@@ -23,20 +23,20 @@ namespace ct
 {
 MasterKey::MasterKey()
 {
-    _key = NULL;
-    _iv = NULL;
+    _key = nullptr;
+    _iv = nullptr;
 }
 
 MasterKey::~MasterKey()
 {
     if (_key){
         free(_key);
-        _key = NULL;
+        _key = nullptr;
     }
 
     if (_iv){
         free(_iv);
-        _iv = NULL;
+        _iv = nullptr;
     }
 }
 
@@ -100,7 +100,7 @@ bool MasterKey::encrypt(FILE *in, FILE *out, const byte *key, const byte *iv, co
 {
     const EVP_CIPHER *cipher = EVP_aes_256_cbc();
     EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
-    EVP_CipherInit_ex(ctx, cipher, 0, key, iv, mode);
+    EVP_CipherInit_ex(ctx, cipher, nullptr, key, iv, mode);
 
     byte *ibuf = (byte *)malloc(AES_BLOCK_SIZE);
     byte *obuf = (byte *)malloc(AES_BLOCK_SIZE + EVP_CIPHER_block_size(cipher));
